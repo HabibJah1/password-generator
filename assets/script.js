@@ -73,6 +73,16 @@ function generatedPassword() {
   if (charType.length === 0) {
     charType.push(lowercase);
   }
+// end of character choice validation for password
+  var generatedPassword = "";
+
+  for (var i = 0; i < passwordLength; i++) {
+    var randomList = getListItem(charType);
+    var randomChar = getListItem(randomList);
+    generatedPassword += randomChar
+  }
+  // returns and dsiplays a value for generated password
+  return generatedPassword
 
 }
 
