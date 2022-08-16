@@ -21,6 +21,10 @@ function generatedPassword() {
   var userInput = window.prompt(
     "How many characters would you like your password to contain?"
   );
+  // User selects cancel instead of choosing password length
+  if (userInput === null) {
+    return;
+  }
 
   var passwordLength = parseInt(userInput);
   //alert user that input is invalid
@@ -73,17 +77,16 @@ function generatedPassword() {
   if (charType.length === 0) {
     charType.push(lowercase);
   }
-// end of character choice validation for password
+  // end of character choice validation for password
   var generatedPassword = "";
 
   for (var i = 0; i < passwordLength; i++) {
     var randomList = getListItem(charType);
     var randomChar = getListItem(randomList);
-    generatedPassword += randomChar
+    generatedPassword += randomChar;
   }
   // returns and dsiplays a value for generated password
-  return generatedPassword
-
+  return generatedPassword;
 }
 
 // Write password to the #password input
@@ -91,9 +94,10 @@ function writePassword() {
   var password = generatedPassword();
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+  if (password) {
+    passwordText.value = password;
+  }
 }
-
 // Add event listener to generate button
 
 generateBtn.addEventListener("click", writePassword);
